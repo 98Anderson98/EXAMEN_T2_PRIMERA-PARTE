@@ -27,4 +27,16 @@ public class AuthController {
                 new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
         return ResponseEntity.ok(new AuthResponseDTO(jwtUtils.generateToken(authentication)));
     }
+
+    @GetMapping("/perfil")
+    public ResponseEntity<?> perfil(Authentication authentication) {
+        String username = authentication != null ? authentication.getName() : "Anonimo";
+        return ResponseEntity.ok(java.util.Map.of(
+                "usuario", username,
+                "estudiante", "Anderson Fabrizzio Larios Tito",
+                "codigo", "n003849813",
+                "estado", "ACTIVO"
+        ));
+    }
 }
+
