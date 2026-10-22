@@ -58,4 +58,29 @@ FROM pedidos p JOIN detalle_pedido d ON d.pedido_id = p.id JOIN productos pr ON 
 2. En Spring Tools: Run As → Spring Boot App (puerto 8080)
 3. Importar `be-ecommerce-lariosanderson.postman_collection.json` en Postman y ejecutar primero **1. Auth**
 
-Autor: Larios Tito Anderson Fabrizzio
+## Pruebas de API vía cURL
+
+### 1. Iniciar Sesión (Generar Token JWT)
+```bash
+curl -X POST http://localhost:8080/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"username":"admin","password":"admin123"}'
+```
+
+### 2. Consultar Perfil y Metadatos
+```bash
+curl -X GET http://localhost:8080/api/auth/perfil \
+  -H "Authorization: Bearer <TOKEN_OBTENIDO>"
+```
+
+### 3. Listar Productos
+```bash
+curl -X GET http://localhost:8080/api/productos \
+  -H "Authorization: Bearer <TOKEN_OBTENIDO>"
+```
+
+---
+**Autor:** Anderson Fabrizzio Larios Tito  
+**Código:** n003849813  
+**Curso:** Desarrollo Web Integrado / Examen T2
+
